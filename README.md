@@ -53,21 +53,21 @@ Since JTR ships with Kali by default, this one stayed entirely in the terminal.
 ### The starting point
 Trying to open the file directly just prompts for a password with no way in.
 
-![Locked PDF prompting for a password on open](WK3 EVIDENCE/01-objective.png)
+![Locked PDF prompting for a password on open](01-objective.png)
 
 The file itself, sitting in my Downloads folder.
 
-![My Locked PDF1.pdf in the file manager](WK3 EVIDENCE/02-target file.png)
+![My Locked PDF1.pdf in the file manager](02-target-file.png)
 
 ### Confirming John was ready to go
 Running `john` with no arguments confirms it's installed and shows the basic usage.
 
-![John the Ripper installed and ready on Kali](WK3 EVIDENCE/03-JTR tool.png)
+![John the Ripper installed and ready on Kali](03-JTR-tool.png)
 
 ### Getting into position
 Moved into the folder holding the target file.
 
-![Navigating to the Downloads folder](WK3 EVIDENCE/04-navigating to target file.png)
+![Navigating to the Downloads folder](04-navigating-to-target-file.png)
 
 ### Extracting the hash
 Used `pdf2john` to pull a crackable hash out of the PDF's encryption metadata. Had to quote the filename since it contains spaces.
@@ -76,11 +76,11 @@ Used `pdf2john` to pull a crackable hash out of the PDF's encryption metadata. H
 pdf2john "My Locked PDF1.pdf" > hash.txt
 ```
 
-![Running pdf2john to extract the hash](WK3 EVIDENCE/05-creating hash file.png)
+![Running pdf2john to extract the hash](05-creating-hash-file.png)
 
 The resulting file held the hash in the expected `$pdf$...` format.
 
-![hash.txt contents opened in a text editor](WK3 EVIDENCE/06- hash extraction results.png)
+![hash.txt contents opened in a text editor](06-hash-extraction-results.png)
 
 ### Running the attack
 ```
@@ -91,14 +91,14 @@ John cracked it almost instantly against its default wordlist.
 
 **Password recovered:** `good-luck`
 
-![John the Ripper cracking the password successfully](WK3 EVIDENCE/07-password cracked.png)
+![John the Ripper cracking the password successfully](07-password-cracked.png)
 
 ### Verifying by opening each file
 Repeated the same workflow against all three target PDFs and opened each one with its recovered password to confirm the crack was accurate.
 
-![My Locked PDF1 opened, flag captured](WK3 EVIDENCE/08- password crack 1.png)
-![My Locked PDF2 opened, flag captured](WK3 EVIDENCE/09-password crack 2.png)
-![My Locked PDF3 opened, flag captured](WK3 EVIDENCE/10-password crack 3.png)
+![My Locked PDF1 opened, flag captured](08-password-crack-1.png)
+![My Locked PDF2 opened, flag captured](09-password-crack-2.png)
+![My Locked PDF3 opened, flag captured](10-password-crack-3.png)
 
 ## Module 2 — Cracking It Again with NetworkWalks' Tools
 
@@ -107,36 +107,36 @@ Same target files, same goal, but entirely through the browser this time.
 ### Opening the Hash Calculator
 Everything here runs client-side — no file is ever uploaded to a server.
 
-![NetworkWalks Hash Calculator, empty](WK3 EVIDENCE/11-networkwalks Hash calc.png)
+![NetworkWalks Hash Calculator, empty](/11-networkwalks-Hash-calc.png)
 
 ### Uploading a locked PDF
 Switched to the PDF tab and selected the target file.
 
-![Uploading My Locked PDF1.pdf to the Hash Calculator](WK3 EVIDENCE/12-importing locked pdf1 into hash calc.png)
+![Uploading My Locked PDF1.pdf to the Hash Calculator](12-importing-locked-pdf1-into-hash-calc.png)
 
 ### Extracting the hash
 The tool returned a hash in the same `$pdf$...` format `pdf2john` produces.
 
-![Extracted hash for PDF1 ready to copy](WK3 EVIDENCE/13- results pdf1.png)
+![Extracted hash for PDF1 ready to copy](13-results-pdf1.png)
 
 ### Opening the Password Cracker
 The companion tool runs the same underlying logic John the Ripper does — hash every candidate word and compare it against the target hash.
 
-![NetworkWalks Password Cracker, empty](WK3 EVIDENCE/14- networkwalks password cracker.png)
+![NetworkWalks Password Cracker, empty](14-networkwalks-password-cracker.png)
 
 ### Pasting in the hash
-![Hash pasted into the Password Cracker](WK3 EVIDENCE/15- hash inputed.png)
+![Hash pasted into the Password Cracker](15-hash-inputed.png)
 
 ### Watching the attack run
 The tool visibly works through its wordlist in real time, rejecting failed guesses as it goes.
 
-![Dictionary attack in progress against PDF1's hash](WK3 EVIDENCE/16-password cracking in progress.png)
+![Dictionary attack in progress against PDF1's hash](16-password-cracking-in-progress.png)
 
 ### Passwords cracked on the remaining files
 Repeated the process for PDF2 and PDF3, each landing on a match.
 
-![PDF2's password cracked — password1](WK3 EVIDENCE/18-password cracked 2.png)
-![PDF3's password cracked — 1qaz2wsx](WK3 EVIDENCE/19-password cracked 3.png)
+![PDF2's password cracked — password1](18-password-cracked-2.png)
+![PDF3's password cracked — 1qaz2wsx](19-password-cracked-3.png)
 
 ## Results
 
