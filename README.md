@@ -177,5 +177,5 @@ Everything here was done against files provided specifically for this NetworkWal
 **Modules:** W3-PM1 (Password Cracking with JTR) & W3-PM2 (Password Cracking with NetworkWalks Tools)
 
 ## Author
-*[Your name]*
-Cybersecurity & Ethical Hacking Trainee
+**Favour Ayang**
+Cybersecurity & Ethical Hacking Intern
